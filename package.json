@@ -1,0 +1,44 @@
+{
+  "name": "novadny-firm-limited",
+  "version": "1.0.0",
+  "description": "NovaDny Desktop App",
+  "author": "NovaDny",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  },
+  "build": {
+    "appId": "com.novadny.desktop",
+    "productName": "NovaDny",
+    "files": [
+      "**/*"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "301364",
+        "repo": "novadny-desktop"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "novadny-firm-logo.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "novadny-firm-logo.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "novadny-firm-logo.ico"
+    }
+  }
+}

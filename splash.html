@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NovaDny Loading...</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      animation: fadeSlideIn 1.2s ease-out forwards;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      background-image: url('novadny-firm-logo-01.png');
+      background-size: cover;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
+      animation: pulse 2s infinite;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      animation: fadeInText 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 rgba(255, 0, 128, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(255, 0, 128, 0.8);
+      }
+      100% {
+        box-shadow: 0 0 0 rgba(255, 0, 128, 0.4);
+      }
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0.4; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(-5px); }
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"></div>
+    <h2>Launching NovaDny Firm Limited...</h2>
+  </div>
+</body>
+</html>
