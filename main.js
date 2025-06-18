@@ -29,7 +29,7 @@ function createWindow() {
     }
   });
 
-  win.loadURL('https://novadny.com');
+  win.loadURL('https://novadny.com/admin/login.php');
 
   win.once('ready-to-show', () => {
     splash.destroy();
