@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NovaDny Loading...</title>
+  <meta charset="UTF-8" />
+  <title>Launching Simplified Communications Limited...</title>
   <style>
     * {
       margin: 0;
@@ -11,71 +11,172 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      background: radial-gradient(ellipse at center, #1a1a1a, #0d0d0d);
       font-family: 'Segoe UI', sans-serif;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
       color: white;
+      overflow: hidden;
+      position: relative;
     }
 
     .container {
       text-align: center;
-      animation: fadeSlideIn 1.2s ease-out forwards;
+      animation: fadeSlideIn 1s ease-out forwards;
     }
 
     .logo {
-      width: 100px;
-      height: 100px;
+      width: 160px;
+      height: auto;
       margin: 0 auto 20px;
-      background-image: url('novadny-firm-logo-01.png');
-      background-size: cover;
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(255, 0, 128, 0.6);
-      animation: pulse 2s infinite;
+      background-image: url('simp-logo-02.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow: 0 0 25px rgba(255, 0, 128, 0.6);
+      animation: pulse 2.5s infinite ease-in-out;
     }
 
     h2 {
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-      animation: fadeInText 2s ease-in-out infinite alternate;
+      font-size: 1.4rem;
+      background: linear-gradient(90deg, #ff00cc, #3333ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 2s infinite linear;
+    }
+
+    .offline-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .offline-logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .offline-overlay h1 {
+      font-size: 2rem;
+      color: #ff5555;
+      margin-bottom: 15px;
+    }
+
+    .offline-overlay p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 500px;
+      margin-bottom: 25px;
+    }
+
+    .retry-btn {
+      background: #ff0055;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .retry-btn:hover {
+      background: #e6004f;
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
+    }
+
+    .loader {
+      border: 5px solid #333;
+      border-top: 5px solid #ff0066;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+      display: none;
     }
 
     @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 rgba(255, 0, 128, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(255, 0, 128, 0.8);
-      }
-      100% {
-        box-shadow: 0 0 0 rgba(255, 0, 128, 0.4);
-      }
+      0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 128, 0.4); }
+      50%      { box-shadow: 0 0 35px rgba(255, 0, 128, 0.9); }
     }
 
-    @keyframes fadeInText {
-      from { opacity: 0.4; transform: translateY(5px); }
-      to   { opacity: 1; transform: translateY(-5px); }
+    @keyframes shimmer {
+      0% { background-position: -100%; }
+      100% { background-position: 200%; }
     }
 
     @keyframes fadeSlideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="main-content">
     <div class="logo"></div>
-    <h2>Launching NovaDny Firm Limited...</h2>
+    <h2>Launching Simplified Communications Limited...</h2>
   </div>
+
+  <div class="offline-overlay" id="offline-message">
+    <img src="simp-logo-02.png" class="offline-logo" alt="Logo Fallback" />
+    <h1>🔌 No Internet Connection</h1>
+    <p>Oops! We’re having trouble connecting to the server.  
+       It looks like your internet or the system network is temporarily down.</p>
+    <button class="retry-btn" onclick="retryCheck()">🔄 Retry</button>
+    <div class="loader" id="loader"></div>
+  </div>
+
+  <script>
+    const offline = document.getElementById('offline-message');
+    const loader = document.getElementById('loader');
+
+    function checkConnection() {
+      if (!navigator.onLine) {
+        offline.style.display = 'flex';
+      } else {
+        offline.style.display = 'none';
+      }
+    }
+
+    function retryCheck() {
+      loader.style.display = 'block';
+      setTimeout(() => {
+        if (navigator.onLine) {
+          loader.style.display = 'none';
+          offline.style.display = 'none';
+        } else {
+          loader.style.display = 'none';
+          offline.style.display = 'flex';
+        }
+      }, 2000); // simulate delay
+    }
+
+    window.addEventListener('load', checkConnection);
+    window.addEventListener('online', checkConnection);
+    window.addEventListener('offline', checkConnection);
+  </script>
 </body>
 </html>

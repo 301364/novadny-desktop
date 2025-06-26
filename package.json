@@ -1,23 +1,26 @@
 {
-  "name": "novadny-firm-limited",
-  "version": "1.0.1",
-  "description": "NovaDny Desktop App",
-  "author": "NovaDny",
+  "name": "simplifies-communications-limited",
+  "version": "1.0.2",
+  "description": "simplified Desktop App",
+  "author": "NovaDny Firm Limited",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "publish": "electron-builder --publish=always",
+    "release": "standard-version"
   },
   "devDependencies": {
     "electron": "^36.4.0",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "standard-version": "^9.5.0"
   },
   "dependencies": {
     "electron-updater": "^6.6.2"
   },
   "build": {
-    "appId": "com.novadny.desktop",
-    "productName": "NovaDny",
+    "appId": "com.simplified.desktop",
+    "productName": "simplified communications limited",
     "files": [
       "**/*"
     ],
@@ -25,20 +28,20 @@
       {
         "provider": "github",
         "owner": "301364",
-        "repo": "novadny-desktop"
+        "repo": "simplified-desktop"
       }
     ],
     "win": {
       "target": "nsis",
-      "icon": "novadny-firm-logo.ico"
+      "icon": "simplified-logo.png"
     },
     "mac": {
       "target": "dmg",
-      "icon": "novadny-firm-logo.ico"
+      "icon": "simplified-logo.png"
     },
     "linux": {
       "target": "AppImage",
-      "icon": "novadny-firm-logo.ico"
+      "icon": "simplified-logo.png"
     }
   }
 }

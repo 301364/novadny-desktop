@@ -1,3 +1,3 @@
 window.addEventListener('DOMContentLoaded', () => {
-    console.log('NovaDny Desktop Loaded');
+    console.log('Simplified Desktop Loaded');
 });
